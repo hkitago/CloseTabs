@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/hkitago/CloseTabs/refs/heads/main/Shared%20(App)/Resources/Icon.png" height="36" valign="bottom"/> CloseTabs for Safari Extension
+# <img src="https://raw.githubusercontent.com/hkitago/CloseTabs/refs/heads/main/Shared%20(App)/Resources/icon-default.png" height="36" valign="bottom"/> CloseTabs for Safari Extension
 
 This Safari extension makes it easy to manage and close multiple tabs from the same website. Instead of manually closing each tab one by one, you can quickly identify all tabs belonging to a site and close them with a single action.  
 
