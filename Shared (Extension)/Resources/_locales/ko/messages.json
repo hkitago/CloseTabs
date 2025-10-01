@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "탭닫기",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "같은 웹사이트의 여러 탭을 쉽게 닫을 수 있습니다.",
+    "description": "Description of what the extension does."
+  }
+}

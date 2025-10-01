@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "SekmeKapat",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "Aynı web sitesinden birden fazla sekmeyi kolayca kapatın.",
+    "description": "Description of what the extension does."
+  }
+}

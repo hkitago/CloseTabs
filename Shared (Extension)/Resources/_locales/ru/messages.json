@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "ЗакрытьВкладки",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "Легко закрывайте несколько вкладок с одного сайта.",
+    "description": "Description of what the extension does."
+  }
+}

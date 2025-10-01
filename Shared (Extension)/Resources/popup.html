@@ -6,6 +6,16 @@
     <script type="module" src="popup.js"></script>
 </head>
 <body>
-    <strong>Hello World!</strong>
+  <main>
+    <ul class="domain-selection" id="domainList"></ul>
+  </main>
+  <footer>
+    <ul id="settingsList">
+      <li><div><label for="keepActive">Keep active tab</label><input type="checkbox" id="keepActive" class="toggle-disabled"><span class="toggle"></span></div></li>
+      <li><div><label for="keepPinned">Keep pinned tabs</label><input type="checkbox" id="keepPinned" class="toggle-disabled"><span class="toggle"></span></div></li>
+    </ul>
+    <div id="settingsBtns"><div id="settingsBtn">Settings</div><div id="settingsDoneBtn">Done</div></div>
+    <div id="actionBtns"></div>
+  </footer>
 </body>
 </html>

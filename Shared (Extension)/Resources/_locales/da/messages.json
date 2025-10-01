@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "LukFaner",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "Luk nemt flere faner fra samme hjemmeside.",
+    "description": "Description of what the extension does."
+  }
+}

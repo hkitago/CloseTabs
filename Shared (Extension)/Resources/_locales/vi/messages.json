@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "ĐóngTab",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "Dễ dàng đóng nhiều tab từ cùng một trang web.",
+    "description": "Description of what the extension does."
+  }
+}

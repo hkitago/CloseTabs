@@ -2,14 +2,249 @@
     color-scheme: light dark;
 }
 
-body {
-    width: 100px;
-    padding: 10px;
+* {
+  -webkit-tap-highlight-color:rgb(0 0 0/0);
+  -webkit-user-select:none;
+  -webkit-touch-callout:none;
+}
 
-    font-family: system-ui;
-    text-align: center;
+html {
+  font: -apple-system-body;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 375px;
+  max-width: 452px;
+  margin: 15px 0 20px;
+  padding: 0;
+  background-color: rgb(240 242 242);
+}
+
+body.os-macos {
+  width: 452px;
+}
+
+body.os-macos button:active,
+body.os-macos button:focus {
+  background-color: rgb(45 135 255);
+}
+
+main, footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 15px;
+}
+
+footer {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+/* Main */
+main > div#errorMsg {
+  width: 100%;
+  border-radius: 15px;
+  background-color: rgb(254 255 255);
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+}
+
+main > div#errorMsg > p {
+  margin: 10px 15px;
+}
+
+ul {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+li {
+  background-color: rgb(254 255 255);
+  overflow: hidden;
+}
+
+ul > li:not(:last-child) {
+  margin-bottom: 1px;
+}
+
+li > div {
+  margin: 10px 15px;
+  display: flex;
+}
+
+li > div > label {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+li.domain-item > div > span.tab-count {
+  background-color: rgb(238 238 239);
+  border-radius: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 3em;
+  margin: 0 10px;
+}
+
+input[type='checkbox'] {
+  display: none;
+}
+
+.toggle {
+  display: inline-block;
+  width: 48px;
+  height: 22px;
+  background: rgb(197 197 197);
+  border-radius: 11px;
+  position: relative;
+  cursor: pointer;
+  margin: 0;
+}
+
+.os-macos .toggle {
+  background: rgb(221 221 221);
+}
+
+.toggle::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 28px;
+  height: 18px;
+  background: #FFF;
+  border-radius: 9px;
+}
+
+input[type='checkbox']:checked ~ .toggle {
+  background: rgb(53 199 89);
+}
+
+.os-macos input[type='checkbox']:checked ~ .toggle {
+  background: rgb(18 122 246);
+}
+
+input[type='checkbox']:checked ~ .toggle::before {
+  transform: translateX(16px);
+}
+
+@keyframes bounce-on {
+  0%   { transform: translateX(0px) scale(1); opacity: 1; }
+  50%  { transform: translateX(16px) scale(2); opacity: 0.5; }
+  100% { transform: translateX(16px) scale(1); opacity: 1; }
+}
+
+@keyframes bounce-off {
+  0%   { transform: translateX(16px) scale(1); opacity: 1; }
+  50%  { transform: translateX(0px) scale(2);  opacity: 0.5; }
+  100% { transform: translateX(0px) scale(1); opacity: 1; }
+}
+
+input[type='checkbox'].toggle-disabled ~ .toggle::before {
+  animation: none !important;
+}
+
+input[type='checkbox']:checked ~ .toggle::before {
+  animation: bounce-on 0.4s ease forwards;
+}
+
+input[type='checkbox']:not(:checked) ~ .toggle::before {
+  animation: bounce-off 0.4s ease forwards;
+}
+
+/* Footer */
+div#settingsBtns {
+  margin: 10px 15px;
+}
+
+div#settingsBtns > div {
+  color: rgb(70 146 254);
+}
+
+div#settingsBtns > div.selected {
+  opacity: 0.5;
+}
+
+div#settingsBtns > div:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+ul#settingsList, div#settingsDoneBtn {
+  display: none;
+}
+
+ul#settingsList {
+  margin-top: 15px;
+}
+
+div#actionBtns {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+
+body.os-macos div#actionBtns {
+  flex-direction: row-reverse;
+  margin-top: 0;
+}
+
+button {
+  -webkit-appearance: none;
+  border-radius: 21px;
+  font: inherit;
+  color: white;
+  padding: 10px 15px;
+  background-color: rgb(0 136 254);
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+button.active {
+  background-color: rgb(209 209 213);
+}
+
+body.os-macos button {
+  background-color: rgb(18 122 246);
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 3px 10px;
+  width: auto;
+  margin-left: 10px;
+  margin-bottom: 0;
 }
 
 @media (prefers-color-scheme: dark) {
-    /* Dark Mode styles go here. */
+  body {
+    background-color: rgb(30 30 30);
+  }
+  
+  main > div#errorMsg {
+    background-color: rgb(37 37 37);
+  }
+
+  li {
+    background-color: rgb(37 37 37);
+  }
+  
+  li.domain-item > div > span.tab-count {
+    background-color: rgb(62 62 65);
+  }
+
+  button.active {
+    background-color: rgb(58 58 60);
+  }
 }

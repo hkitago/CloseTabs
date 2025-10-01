@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "关标签",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "轻松关闭来自同一网站的多个标签页。",
+    "description": "Description of what the extension does."
+  }
+}

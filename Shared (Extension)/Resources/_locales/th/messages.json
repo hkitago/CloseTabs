@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "ปิดแท็บ",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "ปิดแท็บหลายแท็บจากเว็บไซต์เดียวกันได้อย่างง่ายดาย",
+    "description": "Description of what the extension does."
+  }
+}

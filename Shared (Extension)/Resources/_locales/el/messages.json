@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "ΚλείσεΚαρτέλες",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "Κλείστε εύκολα πολλές καρτέλες από τον ίδιο ιστότοπο.",
+    "description": "Description of what the extension does."
+  }
+}

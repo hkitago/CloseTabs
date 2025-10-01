@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "ZatvoriKartice",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "Lako zatvorite više kartica s iste web stranice.",
+    "description": "Description of what the extension does."
+  }
+}

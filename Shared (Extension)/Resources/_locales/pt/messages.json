@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "FecharAbas",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "Feche facilmente várias abas do mesmo site.",
+    "description": "Description of what the extension does."
+  }
+}

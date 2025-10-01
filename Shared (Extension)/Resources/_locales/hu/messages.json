@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "FülekBezár",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "Könnyen zárjon be több fület ugyanarról a weboldalról.",
+    "description": "Description of what the extension does."
+  }
+}

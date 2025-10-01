@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "סגורלוחיות",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "סגור בקלות מספר לוחיות מאותו אתר.",
+    "description": "Description of what the extension does."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "SuljeVälilehdet",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "Sulje helposti useita välilehtiä samalta verkkosivustolta.",
+    "description": "Description of what the extension does."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "ZavrieťKarty",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "Jednoducho zatvorte viac kariet z rovnakej webovej stránky.",
+    "description": "Description of what the extension does."
+  }
+}

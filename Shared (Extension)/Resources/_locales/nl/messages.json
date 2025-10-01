@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "SluitTabbladen",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "Sluit eenvoudig meerdere tabbladen van dezelfde website.",
+    "description": "Description of what the extension does."
+  }
+}

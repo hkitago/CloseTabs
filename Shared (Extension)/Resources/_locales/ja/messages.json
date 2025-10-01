@@ -1,0 +1,10 @@
+{
+  "extension_name": {
+    "message": "タブ一発",
+    "description": "The display name for the extension."
+  },
+  "extension_description": {
+    "message": "同じウェブサイトの複数のタブを簡単に閉じられます。",
+    "description": "Description of what the extension does."
+  }
+}
