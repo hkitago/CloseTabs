@@ -56,7 +56,8 @@ This project is open-source and available under the [MIT License](LICENSE). Feel
 You can reach me via [email](mailto:hkitago@icloud.com?subject=Support%20for%20CloseTabs).
 
 ### Related Links
-- [Get extensions to customize Safari on iPhone - Apple Support](https://support.apple.com/guide/iphone/iphab0432bf6/18.0/ios/18.0)
-- [Get extensions to customize Safari on Mac - Apple Support](https://support.apple.com/guide/safari/get-extensions-sfri32508/mac)
+- [Get extensions to customize Safari on iPhone – Apple Support](https://support.apple.com/guide/iphone/iphab0432bf6/18.0/ios/18.0)
+- [Use Safari extensions on your Mac – Apple Support](https://support.apple.com/102343)
+- [Get extensions to customise Safari on Mac – Apple Support](https://support.apple.com/en-gb/guide/safari/sfri32508/mac)
 - Privacy Policy Page: [Privacy Policy – hkitago software dev](https://hkitago.com/privacypolicy/)
-- Support Page: [hkitago/QuoteLink](https://github.com/hkitago/CloseTabs/)
+- Support Page: [hkitago/CloseTabs](https://github.com/hkitago/CloseTabs/)
