@@ -387,7 +387,18 @@ function show(platform, enabled, useSettingsInsteadOfPreferences) {
   : labelStrings[window.navigator.language.substring(0, 2)]
   ? window.navigator.language.substring(0, 2)
   : 'en';
-  
+
+  const baseLang = langCode.split('-')[0];
+
+  if (baseLang === 'ar' || baseLang === 'he') {
+    document.body.classList.add('rtl');
+    document.documentElement.setAttribute('lang', baseLang);
+    document.documentElement.setAttribute('dir', 'rtl');
+  } else {
+    document.body.classList.remove('rtl');
+    document.documentElement.removeAttribute('dir');
+  }
+
   document.getElementsByClassName('platform-ios')[0].innerText = labelStrings[langCode].iOS;
   document.getElementsByClassName('platform-ios open-settings')[0].innerText = labelStrings[langCode].iOSSettings;
   document.getElementsByClassName('support-button')[0].innerText = labelStrings[langCode].SupportPage;
