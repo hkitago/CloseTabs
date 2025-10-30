@@ -31,6 +31,11 @@ body.os-macos button:focus {
   background-color: rgb(45 135 255);
 }
 
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
 main, footer {
   display: flex;
   justify-content: center;
@@ -182,7 +187,7 @@ div#settingsBtns > div:hover {
 }
 
 ul#settingsList, div#settingsDoneBtn {
-  display: none;
+/*  display: none;*/
 }
 
 ul#settingsList {

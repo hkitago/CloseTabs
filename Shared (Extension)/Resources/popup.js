@@ -5,6 +5,7 @@ const settings = (() => {
   const DEFAULT_SETTINGS = {
     keepActive: true,
     keepPinned: true,
+    isSettingsMode: false,
   };
 
   let cache = { ...DEFAULT_SETTINGS };
@@ -69,6 +70,8 @@ const buildPopup = (settings) => {
   if (isMacOS()) {
     document.body.classList.add('os-macos');
   }
+
+  applyRTLSupport();
 
   // List View
   let tabsData = [];
@@ -188,14 +191,21 @@ const buildPopup = (settings) => {
 
   renderSettingsList();
 
+  // Settings View
   const settingsList = document.getElementById('settingsList');
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsDoneBtn = document.getElementById('settingsDoneBtn');
 
-  let isSettingsMode = false;
+  let isSettingsMode = settings.get('isSettingsMode');
 
-  const toggleSettingsMode = () => {
+  settingsList.style.display = isSettingsMode ? '' : 'none';
+  settingsBtn.style.display = isSettingsMode ? 'none' : '';
+  settingsDoneBtn.style.display = isSettingsMode ? '' : 'none';
+
+  const toggleSettingsMode = async (event) => {
     isSettingsMode = !isSettingsMode;
+
+    await settings.set('isSettingsMode', isSettingsMode);
 
     if (isSettingsMode) {
       settingsList.style.display = 'block';
@@ -285,20 +295,20 @@ const buildPopup = (settings) => {
   });
 
   // Button for debug to open multiple tabs at once
-  const openLinksBtn = document.createElement('button');
-  openLinksBtn.id = 'openLinksBtn';
-  openLinksBtn.textContent = 'Open Links'; // Localization
-  actionBtunsDiv.appendChild(openLinksBtn);
-
-  openLinksBtn.addEventListener('click', async () => {
-    const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
-    const urls = await browser.tabs.sendMessage(tab.id, { type: 'collectExternalLinks', limit: 20 });
-    for (const url of urls) {
-      browser.tabs.create({ url });
-    }
-
-    closeWindow();
-  });
+//  const openLinksBtn = document.createElement('button');
+//  openLinksBtn.id = 'openLinksBtn';
+//  openLinksBtn.textContent = 'Open Links'; // Localization
+//  actionBtunsDiv.appendChild(openLinksBtn);
+//
+//  openLinksBtn.addEventListener('click', async () => {
+//    const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
+//    const urls = await browser.tabs.sendMessage(tab.id, { type: 'collectExternalLinks', limit: 20 });
+//    for (const url of urls) {
+//      browser.tabs.create({ url });
+//    }
+//
+//    closeWindow();
+//  });
 //
 //  const debugBtn = document.createElement('button');
 //  debugBtn.id = 'debugBtn';
