@@ -9,6 +9,8 @@
           "name" : "icon-button.1 2"
         },
         {
+          "glass" : false,
+          "hidden" : false,
           "image-name" : "icon-border.1 2.svg",
           "name" : "icon-border.1 2"
         }
