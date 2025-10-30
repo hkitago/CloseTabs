@@ -32,6 +32,12 @@ To uninstall the extension, similarly to the installation process, toggle the ex
 
 ## Version History
 
+### 1.0.1
+
+#### **macOS/iOS/iPadOS** - 2025-10-09
+
+- Improved RTL text handling and resolved display issues
+
 ### 1.0
 
 #### **macOS/iOS/iPadOS** - 2025-10-01
