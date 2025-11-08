@@ -1,5 +1,5 @@
 import { getCurrentLangLabelString, applyRTLSupport } from './localization.js';
-import { extractDomain } from './utils.js';
+import { isIOS, isIPadOS, isMacOS, getIOSMajorVersion, applyPlatformClass, extractDomain } from './utils.js';
 
 const settings = (() => {
   const DEFAULT_SETTINGS = {
@@ -33,23 +33,6 @@ const settings = (() => {
   return { load, get, set };
 })();
 
-const isIOS = () => {
-  return /iPhone|iPod/.test(navigator.userAgent);
-};
-
-const isIPadOS = () => {
-  return navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
-};
-
-const isMacOS = () => {
-  return navigator.platform.includes('Mac') && !isIPadOS();
-};
-
-const getIOSMajorVersion = () => {
-  const match = navigator.userAgent.match(/OS (\d+)_/);
-  return match ? parseInt(match[1], 10) : 0;
-};
-
 const closeWindow = () => {
   window.close();
 
@@ -67,10 +50,7 @@ const closeWindow = () => {
 };
 
 const buildPopup = (settings) => {
-  if (isMacOS()) {
-    document.body.classList.add('os-macos');
-  }
-
+  applyPlatformClass();
   applyRTLSupport();
 
   // List View
@@ -102,12 +82,6 @@ const buildPopup = (settings) => {
     const sortedDomains = Array.from(domainCounts.entries()).sort((a, b) => b[1] - a[1]);
 
     sortedDomains.forEach(([domain, count]) => {
-//      if (sortedDomains.length === 1 && count === 1) {
-//        document.querySelector('main').innerHTML = `<div id="errorMsg"><p>${getCurrentLangLabelString('onError')}</div>`;
-//        document.querySelector('footer').style.display = 'none';
-//        return;
-//      }
-
       const li = document.createElement('li');
       li.className = 'domain-item';
 
