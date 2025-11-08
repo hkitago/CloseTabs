@@ -5,14 +5,14 @@
       "blend-mode" : "normal",
       "layers" : [
         {
-          "image-name" : "icon-button.1 2.svg",
-          "name" : "icon-button.1 2"
+          "image-name" : "icon-button.svg",
+          "name" : "icon-button"
         },
         {
           "glass" : false,
           "hidden" : false,
-          "image-name" : "icon-border.1 2.svg",
-          "name" : "icon-border.1 2"
+          "image-name" : "icon-border.svg",
+          "name" : "icon-border"
         }
       ],
       "lighting" : "individual",
