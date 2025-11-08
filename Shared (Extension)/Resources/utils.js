@@ -4,14 +4,33 @@
 //
 //  Created by Hiroyuki KITAGO on 2025/09/27.
 //
+export const isIOS = () => {
+  return /iPhone|iPod/.test(navigator.userAgent);
+};
+
+export const isIPadOS = () => {
+  return navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+};
+
 export const isMacOS = () => {
-  const isPlatformMac = navigator.platform.toLowerCase().indexOf('mac') !== -1;
+  return navigator.platform.includes('Mac') && !isIPadOS();
+};
 
-  const isUserAgentMac = /Mac/.test(navigator.userAgent) &&
-                         !/iPhone/.test(navigator.userAgent) &&
-                         !/iPad/.test(navigator.userAgent);
+export const getIOSMajorVersion = () => {
+  const match = navigator.userAgent.match(/OS (\d+)_/);
+  return match ? parseInt(match[1], 10) : 0;
+};
 
-  return (isPlatformMac || isUserAgentMac) && !('ontouchend' in document);
+export const applyPlatformClass = () => {
+  const body = document.body;
+
+  if (isIOS()) {
+    body.classList.add('os-ios');
+  } else if (isIPadOS()) {
+    body.classList.add('os-ipados');
+  } else if (isMacOS()) {
+    body.classList.add('os-macos');
+  }
 };
 
 export const extractDomain = (url) => {
