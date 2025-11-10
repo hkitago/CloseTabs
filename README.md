@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/hkitago/CloseTabs/refs/heads/main/Shared%20(App)/Resources/icon-default.png" height="36" valign="bottom"/> CloseTabs for Safari Extension
+# <img src="https://raw.githubusercontent.com/hkitago/CloseTabs/refs/heads/main/Shared%20(Extension)/Resources/images/icon.svg" height="36" valign="bottom"/> CloseTabs for Safari Extension
 
 This Safari extension makes it easy to manage and close multiple tabs from the same website. Instead of manually closing each tab one by one, you can quickly identify all tabs belonging to a site and close them with a single action.  
 
@@ -26,11 +26,22 @@ To uninstall the extension, similarly to the installation process, toggle the ex
 2. Tap the icon next to the address bar and choose the extension.
 3. A window will slide up from the bottom on iPhone, or a pop-up window will appear on iPad and Mac; select an action and tap it.
 
+> [!IMPORTANT]
+> When Safari’s built-in Tab Groups are in use, this extension cannot close tabs.  
+> Due to current API limitations, tab-closing actions are only supported when Tab Groups are not active.
+
 > [!NOTE]  
 > You need to proactively set **Safari > Settings > Tabs > Close Tabs** to a desired option.  
 > Without this, the extension’s initial popover may appear behind other windows and become unresponsive.
 
 ## Version History
+
+### 1.0.2
+
+#### **macOS/iOS/iPadOS** - 2025-11-10
+
+- Fixed popup menu sizing issues that occurred on certain devices
+- Additional improvements to appearance and refined icons for v26 themes
 
 ### 1.0.1
 
