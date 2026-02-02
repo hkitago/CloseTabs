@@ -27,10 +27,7 @@ browser.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
 
       const tabsToClose = await filterTabsToClose(tabs, activeTabId, request.options);
 
-      if (tabsToClose.length === 0) {
-        console.warn('No tabs to close');
-        return;
-      }
+      if (tabsToClose.length === 0) return;
 
       const batchSize = 20;
       let totalClosed = 0;
@@ -46,7 +43,7 @@ browser.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
         }
       }
     } catch (error) {
-      console.error('Error closing background tabs:', error);
+      console.error('[CloseTabsExtension] Failed to close background tabs:', error);
     }
     return;
   }
@@ -72,7 +69,7 @@ browser.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
 
       return detailedTabs;
     } catch (error) {
-      console.error('Error getting detailed tabs info:', error);
+      console.error('[CloseTabsExtension] Failed to get detailed tabs info:', error);
       return [];
     }
   }
