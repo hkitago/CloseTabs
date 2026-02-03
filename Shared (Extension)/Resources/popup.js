@@ -1,53 +1,5 @@
 import { getCurrentLangLabelString, applyRTLSupport } from './localization.js';
-import { isIOS, isIPadOS, isMacOS, getIOSMajorVersion, applyPlatformClass, extractDomain } from './utils.js';
-
-const settings = (() => {
-  const DEFAULT_SETTINGS = {
-    keepActive: true,
-    keepPinned: true,
-    isSettingsMode: false,
-  };
-
-  let cache = { ...DEFAULT_SETTINGS };
-
-  const load = async () => {
-    try {
-      const { settings: stored } = await browser.storage.local.get('settings');
-      cache = { ...DEFAULT_SETTINGS, ...stored };
-    } catch (error) {
-      console.error('Failed to load settings:', error);
-    }
-  };
-
-  const get = (key) => cache[key];
-
-  const set = async (key, value) => {
-    cache[key] = value;
-    try {
-      await browser.storage.local.set({ settings: cache });
-    } catch (error) {
-      console.error('Failed to save settings:', error);
-    }
-  };
-
-  return { load, get, set };
-})();
-
-const closeWindow = () => {
-  window.close();
-
-  // In older iOS versions (<18), reloading the extension helped with some popup issues
-  // Might no longer be necessary — safe to remove if no issues found
-  if (getIOSMajorVersion() > 0 && getIOSMajorVersion() < 18) {
-    setTimeout(() => {
-      try {
-        browser.runtime.reload();
-      } catch (error) {
-        console.warn('browser.runtime.reload failed:', error);
-      }
-    }, 100);
-  }
-};
+import { isIPadOS, applyPlatformClass, extractDomain, settings, closeWindow } from './utils.js';
 
 const buildPopup = (settings) => {
   applyPlatformClass();
@@ -70,7 +22,7 @@ const buildPopup = (settings) => {
         domainCounts.set(domain, count + 1);
       });
     } catch (error) {
-      console.error('Error loading tabs data:', error);
+      console.error('[CloseTabsExtension] Failed to load tabs data:', error);
     }
   }
 
@@ -131,7 +83,7 @@ const buildPopup = (settings) => {
     { key: 'keepPinned', label: `${getCurrentLangLabelString('settingsKeepPinned')}` },
   ];
 
-  const checkboxes = {};
+  const settingsToggles = {};
 
   const renderSettingsList = () => {
     settingItems.forEach(({ key, label }) => {
@@ -139,7 +91,7 @@ const buildPopup = (settings) => {
       const labelElement = document.querySelector(`label[for="${key}"]`);
       if (!checkbox || !labelElement) return;
 
-      checkboxes[key] = checkbox;
+      settingsToggles[key] = checkbox;
 
       labelElement.textContent = label;
 
@@ -190,8 +142,8 @@ const buildPopup = (settings) => {
       settingsBtn.style.display = 'block';
       settingsDoneBtn.style.display = 'none';
 
-      checkboxes.keepActive.classList.add('toggle-disabled');
-      checkboxes.keepPinned.classList.add('toggle-disabled');
+      settingsToggles.keepActive.classList.add('toggle-disabled');
+      settingsToggles.keepPinned.classList.add('toggle-disabled');
     }
 
     const html = document.documentElement;
@@ -235,12 +187,12 @@ const buildPopup = (settings) => {
     ).map(cb => cb.value);
 
     return {
-      keepActive: checkboxes.keepActive?.checked ?? false,
-      keepPinned: checkboxes.keepPinned?.checked ?? false,
+      keepActive: settingsToggles.keepActive?.checked ?? false,
+      keepPinned: settingsToggles.keepPinned?.checked ?? false,
       selectedDomains,
     };
   };
-  
+
   closeTabsBtn.addEventListener('click', async (event) => {
     const options = getCloseTabsOptions();
     
@@ -250,9 +202,9 @@ const buildPopup = (settings) => {
         options: options
       });
     } catch (error) {
-      console.error('Fail to close tabs:', error);
+      console.error('[CloseTabsExtension] Failed to close tabs:', error);
     }
-    
+
     closeWindow();
   });
 
@@ -267,36 +219,9 @@ const buildPopup = (settings) => {
   closeTabsBtn.addEventListener('touchcancel', (event) => {
     event.target.classList.remove('active');
   });
-
-  // Button for debug to open multiple tabs at once
-//  const openLinksBtn = document.createElement('button');
-//  openLinksBtn.id = 'openLinksBtn';
-//  openLinksBtn.textContent = 'Open Links'; // Localization
-//  actionBtunsDiv.appendChild(openLinksBtn);
-//
-//  openLinksBtn.addEventListener('click', async () => {
-//    const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
-//    const urls = await browser.tabs.sendMessage(tab.id, { type: 'collectExternalLinks', limit: 20 });
-//    for (const url of urls) {
-//      browser.tabs.create({ url });
-//    }
-//
-//    closeWindow();
-//  });
-//
-//  const debugBtn = document.createElement('button');
-//  debugBtn.id = 'debugBtn';
-//  debugBtn.textContent = 'Debug';
-//  document.querySelector('footer').appendChild(debugBtn);
-//  
-//  debugBtn.addEventListener('click', async () => {
-//    console.log(document.documentElement.scrollTop);
-//  });
-
 };
 
 let isInitialized = false;
-
 const initializePopup = async () => {
   if (isInitialized) return;
   isInitialized = true;
@@ -317,7 +242,7 @@ const initializePopup = async () => {
       }, 750);
     }
   } catch (error) {
-    console.error('Fail to initialize to build the popup:', error);
+    console.error('[CloseTabsExtension] Failed to initialize to build the popup:', error);
     isInitialized = false;
   }
 };
