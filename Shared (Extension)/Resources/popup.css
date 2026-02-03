@@ -271,3 +271,27 @@ button.active {
     background-color: rgb(58 58 60);
   }
 }
+
+@supports (-apple-visual-effect: -apple-system-glass-material) {
+  html {
+    background: transparent;
+    -apple-visual-effect: -apple-system-glass-material;
+  }
+  
+  body {
+    background: transparent;
+  }
+
+  @keyframes bounce-on {
+    0%   { transform: translateX(0px) scale(2); background: transparent; -apple-visual-effect: -apple-system-glass-material; }
+    50%  { transform: translateX(var(--toggle-x)) scale(2); background: transparent; -apple-visual-effect: -apple-system-glass-material; }
+    100% { transform: translateX(var(--toggle-x)) scale(1); }
+  }
+
+  @keyframes bounce-off {
+    0%   { transform: translateX(var(--toggle-x)) scale(2); background: transparent; -apple-visual-effect: -apple-system-glass-material; }
+    50%  { transform: translateX(0px) scale(2); background: transparent; -apple-visual-effect: -apple-system-glass-material; }
+    100% { transform: translateX(0px) scale(1); }
+  }
+
+}
