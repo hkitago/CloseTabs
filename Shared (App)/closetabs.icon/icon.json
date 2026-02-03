@@ -2,17 +2,45 @@
   "fill" : "system-light",
   "groups" : [
     {
+      "layers" : [
+        {
+          "fill" : "automatic",
+          "glass" : false,
+          "image-name" : "icon-button.svg",
+          "name" : "icon-button",
+          "position" : {
+            "scale" : 0.95,
+            "translation-in-points" : [
+              5.825562511391809,
+              6.063202007777363
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    },
+    {
       "blend-mode" : "normal",
       "layers" : [
         {
-          "image-name" : "icon-button.svg",
-          "name" : "icon-button"
-        },
-        {
-          "glass" : false,
+          "glass" : true,
           "hidden" : false,
           "image-name" : "icon-border.svg",
-          "name" : "icon-border"
+          "name" : "icon-border",
+          "position" : {
+            "scale" : 0.95,
+            "translation-in-points" : [
+              -3.265845650325673,
+              -6.21257540550539
+            ]
+          }
         }
       ],
       "lighting" : "individual",
