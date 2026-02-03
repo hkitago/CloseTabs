@@ -27,7 +27,6 @@ const labelStrings = {
   "ar-SA": {
     "onError": "لاستخدام هذا الامتداد، يجب فتح علامتي تبويب على الأقل. افتح علامة تبويب جديدة وحاول مرة أخرى.",
     "settings": "الإعدادات",
-    "quoteStyleSetting": "اقتباس",
     "settingsDone": "تم",
     "startpage": "صفحة البداية",
     "settingsKeepActive": "الاحتفاظ بعلامة التبويب النشطة",
