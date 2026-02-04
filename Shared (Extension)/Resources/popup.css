@@ -38,16 +38,44 @@ body.os-ios, body.os-ipados {
   text-align: right;
 }
 
-main, footer {
+header, main, footer {
   display: flex;
+  margin: 0 15px;
+}
+
+header {
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+main {
   justify-content: center;
   align-items: center;
-  margin: 0 15px;
 }
 
 footer {
   align-items: flex-start;
   flex-direction: column;
+}
+
+/* Header */
+#switchAllToggles {
+  color: rgb(70 146 254);
+  margin: 0 15px;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+#switchAllToggles.selected {
+  opacity: 0.5;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #switchAllToggles:hover {
+    cursor: pointer;
+    opacity: 0.5;
+  }
 }
 
 /* Main */
@@ -186,6 +214,7 @@ div#settingsBtns {
 }
 
 div#settingsBtns > div {
+  text-transform: capitalize;
   color: rgb(70 146 254);
 }
 
@@ -195,11 +224,6 @@ div#settingsBtns > div.selected {
 
 div#settingsBtns > div:hover {
   cursor: pointer;
-  opacity: 0.5;
-}
-
-ul#settingsList, div#settingsDoneBtn {
-/*  display: none;*/
 }
 
 ul#settingsList {

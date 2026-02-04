@@ -5,6 +5,53 @@ const buildPopup = (settings) => {
   applyPlatformClass();
   applyRTLSupport();
 
+  // Switch All Toggles Btn View
+  const switchAllToggles = document.getElementById('switchAllToggles');
+  const toggleAllLabel = getCurrentLangLabelString('toggleAll');
+
+  const updateSwitchAllTogglesLabel = (shouldBeOn) => {
+    const stateKey = shouldBeOn ? 'on' : 'off';
+    switchAllToggles.dataset.state = stateKey;
+
+    const stateLabel = toggleAllLabel[stateKey];
+    switchAllToggles.textContent = stateLabel;
+    switchAllToggles.title = stateLabel;
+  };
+
+  const initSwitchAllToggles = () => {
+    updateSwitchAllTogglesLabel(false);
+
+    switchAllToggles.addEventListener('click', (event) => {
+      const nextState = switchAllToggles.dataset.state === 'off';
+
+      const toggles = document.querySelectorAll('#domainList input');
+      toggles.forEach(toggle => {
+        if (toggle.checked === nextState) {
+          toggle.checked = !toggle.checked;
+          toggle.classList.remove('toggle-disabled');
+        }
+      });
+
+      updateSwitchAllTogglesLabel(nextState);
+    });
+
+    switchAllToggles.addEventListener('touchstart', (event)   => switchAllToggles.classList.add('selected'));
+    switchAllToggles.addEventListener('touchend', (event)     => switchAllToggles.classList.remove('selected'));
+    switchAllToggles.addEventListener('touchcancel', (event)  => switchAllToggles.classList.remove('selected'));
+  };
+
+  const syncSwitchAllTogglesLabel = () => {
+    const toggles = document.querySelectorAll('#domainList input');
+    if (toggles.length === 0) return;
+    
+    const toggleOnCount = Array.from(toggles).filter(t => t.checked).length;
+    const shouldBeOn = toggleOnCount > (toggles.length / 2);
+    console.log(shouldBeOn);
+    updateSwitchAllTogglesLabel(!shouldBeOn);
+  };
+
+  initSwitchAllToggles();
+
   // List View
   let tabsData = [];
   let domainCounts = new Map();
@@ -57,13 +104,13 @@ const buildPopup = (settings) => {
 
       const toggleSpan = document.createElement('span');
       toggleSpan.className = 'toggle';
-
-      checkbox.addEventListener('click', (event) => {
-        event.target.classList.remove('toggle-disabled');
-      });
-
       toggleSpan.addEventListener('click', (event) => {
         checkbox.click();
+      });
+
+      checkbox.addEventListener('change', async () => {
+        checkbox.classList.remove('toggle-disabled');
+        syncSwitchAllTogglesLabel();
       });
 
       div.appendChild(label);
@@ -96,10 +143,6 @@ const buildPopup = (settings) => {
       labelElement.textContent = label;
 
       checkbox.checked = settings.get(key);
-
-      checkbox.addEventListener('click', (event) => {
-        event.target.classList.remove('toggle-disabled');
-      });
 
       const toggleSpan = checkbox.nextElementSibling;
       if (toggleSpan) {
@@ -156,22 +199,16 @@ const buildPopup = (settings) => {
   settingsBtn.title = `${getCurrentLangLabelString('settings')}`;
   settingsBtn.textContent = `${getCurrentLangLabelString('settings')}`;
   settingsBtn.addEventListener('click', toggleSettingsMode);
-  settingsBtn.addEventListener('touchstart', (event) => {
-    event.target.classList.add('selected');
-  });
-  settingsBtn.addEventListener('touchend', (event) => {
-    event.target.classList.remove('selected');
-  });
+  settingsBtn.addEventListener('touchstart', (event)  => settingsBtn.classList.add('selected'));
+  settingsBtn.addEventListener('touchend', (event)    => settingsBtn.classList.remove('selected'));
+  settingsBtn.addEventListener('touchcancel', (event) => settingsBtn.classList.remove('selected'));
 
   settingsDoneBtn.title = `${getCurrentLangLabelString('settingsDone')}`;
   settingsDoneBtn.textContent = `${getCurrentLangLabelString('settingsDone')}`;
   settingsDoneBtn.addEventListener('click', toggleSettingsMode);
-  settingsDoneBtn.addEventListener('touchstart', (event) => {
-    event.target.classList.add('selected');
-  });
-  settingsDoneBtn.addEventListener('touchend', (event) => {
-    event.target.classList.remove('selected');
-  });
+  settingsDoneBtn.addEventListener('touchstart', (event)  => settingsDoneBtn.classList.add('selected'));
+  settingsDoneBtn.addEventListener('touchend', (event)    => settingsDoneBtn.classList.remove('selected'));
+  settingsDoneBtn.addEventListener('touchcancel', (event) => settingsDoneBtn.classList.remove('selected'));
 
   // Buttons View
   const actionBtunsDiv = document.getElementById('actionBtns');
@@ -208,17 +245,30 @@ const buildPopup = (settings) => {
     closeWindow();
   });
 
-  closeTabsBtn.addEventListener('touchstart', (event) => {
-    event.target.classList.add('active');
+  closeTabsBtn.addEventListener('touchstart', (event)   => closeTabsBtn.classList.add('active'));
+  closeTabsBtn.addEventListener('touchend', (event)     => closeTabsBtn.classList.remove('active'));
+  closeTabsBtn.addEventListener('touchcancel', (event)  => closeTabsBtn.classList.remove('active'));
+
+  // Button for debug to open multiple tabs at once
+  const openLinksBtn = document.createElement('button');
+  openLinksBtn.id = 'openLinksBtn';
+  openLinksBtn.textContent = 'Open Links'; // Localization
+  actionBtunsDiv.appendChild(openLinksBtn);
+
+  openLinksBtn.addEventListener('click', async () => {
+    try {
+      const [activeTab] = await browser.tabs.query({ active: true, currentWindow: true });
+      const urls = await browser.tabs.sendMessage(activeTab.id, { type: 'collectExternalLinks', limit: 50 });
+      for (const url of urls) {
+        browser.tabs.create({ url });
+      }
+
+      closeWindow();
+    } catch (error) {
+      console.error('[CloseTabsExtension] Failed to collect external links:', error);
+    }
   });
 
-  closeTabsBtn.addEventListener('touchend', (event) => {
-    event.target.classList.remove('active');
-  });
-
-  closeTabsBtn.addEventListener('touchcancel', (event) => {
-    event.target.classList.remove('active');
-  });
 };
 
 let isInitialized = false;
