@@ -248,27 +248,6 @@ const buildPopup = (settings) => {
   closeTabsBtn.addEventListener('touchstart', (event)   => closeTabsBtn.classList.add('active'));
   closeTabsBtn.addEventListener('touchend', (event)     => closeTabsBtn.classList.remove('active'));
   closeTabsBtn.addEventListener('touchcancel', (event)  => closeTabsBtn.classList.remove('active'));
-
-  // Button for debug to open multiple tabs at once
-  const openLinksBtn = document.createElement('button');
-  openLinksBtn.id = 'openLinksBtn';
-  openLinksBtn.textContent = 'Open Links'; // Localization
-  actionBtunsDiv.appendChild(openLinksBtn);
-
-  openLinksBtn.addEventListener('click', async () => {
-    try {
-      const [activeTab] = await browser.tabs.query({ active: true, currentWindow: true });
-      const urls = await browser.tabs.sendMessage(activeTab.id, { type: 'collectExternalLinks', limit: 50 });
-      for (const url of urls) {
-        browser.tabs.create({ url });
-      }
-
-      closeWindow();
-    } catch (error) {
-      console.error('[CloseTabsExtension] Failed to collect external links:', error);
-    }
-  });
-
 };
 
 let isInitialized = false;
