@@ -34,30 +34,18 @@ To uninstall the extension, similarly to the installation process, toggle the ex
 > You need to proactively set **Safari > Settings > Tabs > Close Tabs** to a desired option.  
 > Without this, the extension’s initial popover may appear behind other windows and become unresponsive.
 
-## Version History
+## Latest Version
 
-### 1.0.2
+### [26.1] - 2026-02-05
 
-#### **macOS/iOS/iPadOS** - 2025-11-10
+- Added quick toggle for all domains at once
+- Improved button responsiveness
 
-- Fixed popup menu sizing issues that occurred on certain devices
-- Additional improvements to appearance and refined icons for v26 themes
-
-### 1.0.1
-
-#### **macOS/iOS/iPadOS** - 2025-10-09
-
-- Improved RTL text handling and resolved display issues
-
-### 1.0
-
-#### **macOS/iOS/iPadOS** - 2025-10-01
-
-- Initial release with basic features
+Previous Updates: [CHANGELOG.md](./CHANGELOG.md)
 
 ## Roadmap
 
-- Additional filter options will be made available through the settings.
+- Additional filter options will be made available through the settings
 
 ## Compatibility
 
@@ -71,6 +59,12 @@ This project is open-source and available under the [MIT License](LICENSE). Feel
 ## Contact
 
 You can reach me via [email](mailto:hkitago@icloud.com?subject=Support%20for%20CloseTabs).
+
+## Additional Information
+
+### Development Story
+
+To explore real-world use cases and scenarios where this extension can be applied, check out the [development story blog post](https://hkitago.com/2025/10/closetabs-dev-story/).
 
 ### Related Links
 - [Get extensions to customize Safari on iPhone – Apple Support](https://support.apple.com/guide/iphone/iphab0432bf6/18.0/ios/18.0)
